@@ -1,0 +1,104 @@
+*{
+  margin:0px;
+  padding:0;
+
+}
+ul{
+  width:auto;
+}
+li.slide{
+  list-style-type: none;
+  position: static;
+  float:left;
+    overflow: hidden;
+  height:300px;
+  background-color:#eee;
+
+}
+li.slide img{
+  width:100%;
+
+}
+.textOver{
+  text-align: center;
+  background-color: white;
+  height:300px;
+
+  position: absolute;
+  z-index: 1000;
+}
+.fadeIntext{
+  opacity:0;
+  top:50px;
+  position: relative;
+}
+h1{
+  margin:0px;
+}
+h2{
+  margin:10px;
+  font-size:18px;
+}
+body{
+  position:relative;
+  height:2000px;
+  font-family: 'Book Antiqua', Palatino, 'Palatino Linotype', 'Palatino LT STD', Georgia, serif;
+  }
+#header{
+  background-color: #fff;
+  opacity:0.8;
+  width:100%;
+  margin:0;
+  border-bottom:1px dotted #eee;
+  padding:10px 0 10px 0;
+}  
+#innerHeader{
+  width:100%;
+  margin:0 10px 10px 10px;
+}
+#contentsHolder{
+  width:100%;
+
+}
+#recentWork{
+
+  margin:0 auto;
+  position: relative;
+}
+#timeDisplay,#scrollDisplay{
+  box-sizing: border-box;
+  width:33.3%;
+  background:#eee;
+  border:1px dotted #ccc;
+  float:left;
+  margin:10px 0;
+}
+p.small{
+  font-size:10px;
+  color:#ccc;
+}
+#mainSlide{
+  position:relative;
+  left:0;
+
+}
+.clearfix:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+p.next,p.back
+{
+  text-align: center;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  background-color:#ccc;
+  display:block;
+  position:absolute;
+  z-index:10000;
+  cursor: pointer;
+  top:100px;
+}
+
