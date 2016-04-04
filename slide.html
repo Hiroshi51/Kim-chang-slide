@@ -1,0 +1,115 @@
+<head> 
+    <meta charset="utf-8">
+</head>
+<body>
+	<link rel="stylesheet" href="style.css" type="text/css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<header>
+	    <div id="header" class="dissapear">
+	        <div id="innerHeader">
+			    <h1>Letters51</h1><span>creating webSites</span>
+			    <P class="small">I now try to create this APP to make randam image file names, So that the names won't be the same.</P>
+		    </div>
+	    </div>
+	</header>
+	
+	<section>
+		<div class="contentsHolder">
+		  <div id="recentWork">
+		  <h2>KIM-CHANG-SLIDE</h2>
+		       <p class="next">></p>
+			  <p class="back"><</p>
+		    <div class="textOver">
+		     <div class="fadeIntext">
+		     <h3>Kim-chan</h3>
+		     <p>How are you today?</p>
+		     </div>
+		    </div>
+
+			<ul id="mainSlide">
+                <li class="slide"><img src="img/p01.jpg"/></li>
+                <li class="slide"><img src="img/p02.jpg"/></li>
+                <li class="slide"><img src="img/p03.jpg"/></li>
+                <li class="slide"><img src="img/p04.jpg"/></li>
+			</ul>
+			 
+		  </div>	
+		</div>
+	</section>
+    <script>
+        $(document).ready(function(){
+          var slidePosition = 1;
+          var halfwindow = Math.ceil($(window).width());
+		  var slideWidth = halfwindow * 0.5;
+		  var sliderMargin = halfwindow * 0.25;	
+		  var textObjName= [
+               "Kim-chang",
+               "Oda-chang",
+               "Atushi",
+               "TSP"
+		  ]
+		  var textObjMessage = [
+               "How are you today?",
+               "Nice Work!",
+               "You are the awesome Photographer, I will see and ask you to take my daughter's photo",
+               "Mito's future relys on you guys"
+		  ]
+          adjestImgs(); 
+       
+
+          $(window).resize(function(){adjestImgs();});
+
+          $('.next').on('click',function(event){
+          	event.preventDefault();
+          	animateSlideNext();
+          });
+
+          $('.back').on('click',function(event){
+          	event.preventDefault();
+          	animateSlideBack();
+          });
+
+          function adjestImgs(){	
+          	  halfwindow = Math.ceil($(window).width());
+          	  slideWidth = halfwindow*0.5;
+          	  sliderMargin = halfwindow*0.25;	
+              $('.next').css({left:sliderMargin/2+sliderMargin-50+"px"});
+              $('.back').css({left:sliderMargin/2+sliderMargin+1+"px"});
+          	  $('#mainSlide').css({marginLeft:sliderMargin/2+"px"});
+          	  $('.textOver').css({width:sliderMargin+"px",left:sliderMargin/2+"px"});
+	          $('.slide').width(slideWidth);
+	          var mainSlideWidth = slideWidth * 4;
+	          console.log(mainSlideWidth);
+	          $('#mainSlide').width(mainSlideWidth).css({left:sliderMargin+"px"});
+          }
+
+          function animateSlideNext(){
+				if(slidePosition != 4){
+					var next = parseInt($('#mainSlide').css("left")) - slideWidth; 
+					$('#mainSlide').animate({left:next+"px"},500);
+					slidePosition++;
+				}
+					else if(slidePosition == 4){
+					$('#mainSlide').animate({left:sliderMargin},500);
+					slidePosition = 1;
+				}
+				$('.fadeIntext').animate({top:"50px",opacity:"0"});
+			
+				$('.fadeIntext').animate({top:"20px",opacity:"1"});
+           }
+
+          function animateSlideBack(){
+          	    if(slidePosition != 1){
+	          	  var next = parseInt($('#mainSlide').css("left")) + slideWidth; 
+	          	    $('#mainSlide').animate({left:next+"px"},500);
+	          	    slidePosition--;
+	          	}
+	          	else if(slidePosition == 1){
+                    $('#mainSlide').animate({left:"-"+parseInt($('#mainSlide').css("left"))-slideWidth*2+"px"},500);
+					slidePosition = 4;
+				}	
+		   }
+        });
+    </script>
+
+</body>
