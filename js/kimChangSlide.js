@@ -1,16 +1,11 @@
   $(document).ready(function(){
 	      //Configuration	
 	      var slidePosition = 0;
-	      var halfwindow    = Math.ceil($(window).width());
-		  var slideWidth    = halfwindow * 0.5;
-		  var sliderMargin  = halfwindow * 0.25;	
-	      
-	      //Call to Show the Slide as the document loaded
-	      adjestImgs(); 
-	   
-	      //adjust the slide as the window is resized
-	      $(window).resize(function(){adjestImgs();});
-	      
+	      var halfwindow    = 0;
+		  var slideWidth    = 0;
+		  var sliderMargin  = 0;	
+	      var slideHeight   = 0;
+
 	      //set the next btn action
 	      var click_allowed = true;
 	      $('.next').on('click',function(event){
@@ -33,20 +28,47 @@
 	      		click_allowed = true;
 	      	},500);
 	      });
-	       
+
+	   
+	      //adjust the slide as the window is resized
+	      $(window).resize(function(){adjestImgs();});
+	      
 	      //adjestImgs function definition
 	      function adjestImgs(){	
-	      	  halfwindow         = Math.ceil($(window).width());
-	      	  slideWidth         = halfwindow*0.5;
-	      	  sliderMargin       = halfwindow*0.25;	
-	      	  var mainSlideWidth = slideWidth*4;
-	      	  $('#mainSlide')  .css({marginLeft:sliderMargin/2+"px"});
-	      	  $('#mainSlide')  .width(mainSlideWidth).css({left:sliderMargin+"px"});
-	      	  $('.slide')      .width(slideWidth);
-	      	  $('.textOver')   .css({width:sliderMargin+"px",left:sliderMargin/2+"px"});
-	      	  $('.textSetting').css({width:sliderMargin-110+"px",left:"55px"});
-	      	  $('.next')       .css({left:sliderMargin/2+sliderMargin-50+"px"});
-	          $('.back')       .css({left:sliderMargin/2+sliderMargin+1+"px"});
+	      	  halfwindow         = window.innerWidth;
+	          console.log(halfwindow);
+
+	      	  if(halfwindow > 600){
+		      	  slideWidth         = halfwindow*0.5;
+		      	  sliderMargin       = halfwindow*0.25;	
+		      	  var mainSlideWidth = slideWidth*4;
+		      	  $('#mainSlide')  .css({marginLeft:sliderMargin/2+"px"});
+		      	  $('#mainSlide')  .width(mainSlideWidth).css({left:sliderMargin-slidePosition*slideWidth+"px"});
+		      	  $('.slide')      .width(slideWidth);
+		      	  $('.slideImg')   .css({width:slideWidth+"px"});       
+		      	  $('.textOver')   .css({width:sliderMargin+"px",left:sliderMargin/2+"px"});
+		      	  $('.textSetting').css({width:sliderMargin-110+"px",left:"55px"});
+		      	  $('.next')       .css({top:"100px",left:sliderMargin/2+sliderMargin-50+"px"});
+		          $('.back')       .css({top:"100px",left:sliderMargin/2+sliderMargin+1+"px"});
+		         
+	          }
+	          else{
+	          	 
+                  slideWidth         = halfwindow*0.8;
+		      	  $('.slide')      .css({width:slideWidth+"px"});
+		      	  $('.slideImg')   .css({width:slideWidth+"px"});                  
+		      	  sliderMargin       = halfwindow*0.1;	
+		      	  var mainSlideWidth = slideWidth*4;
+		      	  slideHeight = $('.slide').height();
+		      	  var adjustHeight = parseInt($('.textOver').height()) - 15;
+		          
+              	  $('#mainSlide')  .css({width:mainSlideWidth+"px",left:sliderMargin-slidePosition*slideWidth+"px",marginLeft:0});
+
+		      	  $('.textOver')   .css({width:"100%",left:0});
+		      	  $('.textSetting').css({width:"100%",left:0});
+                  $('.next')       .css({top:slideHeight/2+adjustHeight+"px",right:0,left:"auto"});
+		          $('.back')       .css({top:slideHeight/2+adjustHeight+"px",left:0,right:"auto"}); 
+	          }
 	      }
 
 	      //moveSlideForward function definition
@@ -103,7 +125,7 @@
 	      function animateSlideBack(){
 	      	    switch(slidePosition){
 					case 0:
-	                    $('#mainSlide').animate({left:"-"+parseInt($('#mainSlide').css("left"))-slideWidth*2+"px"},500);
+	                    $('#mainSlide').animate({left:parseInt($('#mainSlide').css("left"))-slideWidth*3+"px"},500);
 	                    $('.fadeIntext01').animate({top:"100px",opacity:"0"},500);
 						var wait = window.setTimeout(function(){
 						$('.fadeIntext04').animate({top:"20px",opacity:"1"});
@@ -136,4 +158,9 @@
 					    break;  
 		     	}
 		   }
+
+          //Call to Show the Slide as the document loaded
+ 
+          adjestImgs();  
+
 	    });
