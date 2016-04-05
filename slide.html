@@ -4,6 +4,11 @@
     <link rel="stylesheet" href="style.css" type="text/css" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 	<script src="js/kimChangLoading.js"></script>
+	<script src="js/kimChangSlide.js"></script>
+	<script type="text/javascript">
+		var gg         = $(window).width();
+	      console.log(gg);
+	</script>
 </head>
 <body>
 	<div id="loader-bg"></div>
@@ -18,8 +23,8 @@
 		</header>
 		<section>
 			<div class="contentsHolder">
-			 <h2>KIM-CHANG-SLIDE</h2>
-			  <div id="recentWork" class="clearfix">
+			 
+			  <div id="recentWork">
 			 
 			       <p class="next">></p>
 				  <p class="back"><</p>
@@ -31,10 +36,10 @@
 			     </div>
 			     <div class="textSetting fadeIntext02">
 				     <h3>Atsushi</h3>
-				     <p>I want you to take my daughter's photo</p>
+				     <p>take my daughter's photo!</p>
 				     <p>娘の写真を撮ってほしい！</p>
 			     </div>
-			      <div class="textSetting fadeIntext03">
+			       <div class="textSetting fadeIntext03">
 				     <h3>Oda-chang</h3>
 				     <p>You are the Maya Master</p>
 				     <p>Hey! Mayaマスター！</p>
@@ -42,20 +47,21 @@
 			      <div class="textSetting fadeIntext04">
 				     <h3>TSP</h3>
 				     <p>Let's renovate Mito!!</p>
+				     <p>おつかれさまです。</p>
 			     </div>
 			    </div>
-
+                <div id="slideWrapper" class="clearfix">
 				<ul id="mainSlide">
-	                <li class="slide"><img src="img/p01.jpg"/></li>
-	                <li class="slide"><img src="img/p02.jpg"/></li>
-	                <li class="slide"><img src="img/p03.jpg"/></li>
-	                <li class="slide"><img src="img/p04.jpg"/></li>
+	                <li class="slide"><img class="slideImg" src="img/p01.jpg"/></li>
+	                <li class="slide"><img class="slideImg" src="img/p02.jpg"/></li>
+	                <li class="slide"><img class="slideImg" src="img/p03.jpg"/></li>
+	                <li class="slide"><img class="slideImg" src="img/p04.jpg"/></li>
 				</ul>
-				 
+				</div> 
 			  </div>	
 			</div>
 		</section>
 	</div>
-	<script src="js/kimChangSlide.js"></script>
+	
 </body>
 </html>
