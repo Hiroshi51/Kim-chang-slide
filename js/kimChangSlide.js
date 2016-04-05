@@ -42,8 +42,8 @@
 		      	  slideWidth         = halfwindow*0.5;
 		      	  sliderMargin       = halfwindow*0.25;	
 		      	  var mainSlideWidth = slideWidth*4;
-		      	  $('#mainSlide')  .css({marginLeft:sliderMargin/2+"px"});
-		      	  $('#mainSlide')  .width(mainSlideWidth).css({left:sliderMargin-slidePosition*slideWidth+"px"});
+		     
+		      	  $('#mainSlide')  .width(mainSlideWidth).css({left:sliderMargin*1.5-slidePosition*slideWidth+"px"});
 		      	  $('.slide')      .width(slideWidth);
 		      	  $('.slideImg')   .css({width:slideWidth+"px"});       
 		      	  $('.textOver')   .css({width:sliderMargin+"px",left:sliderMargin/2+"px"});
@@ -111,7 +111,7 @@
 					    slidePosition++;
 					    break;       
 					case 3:
-					 	$('#mainSlide').animate({left:sliderMargin},500);
+					 	$('#mainSlide').animate({left:sliderMargin*1.5},500);
 					 	$('.fadeIntext04').animate({top:"100px",opacity:"0"},500);
 						var wait = window.setTimeout(function(){
 						$('.fadeIntext01').animate({top:"20px",opacity:"1"});
