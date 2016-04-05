@@ -11,10 +11,13 @@ li.slide{
   position: static;
   float:left;
   overflow: hidden;
-  height:300px;
+  height:auto;
+  max-height:300px;
 }
-li.slide img{
-  width:100%;
+li.slide img{ 
+  padding:0;
+  margin:0;
+  display: block;
 }
 .textOver{
   text-align: center;
@@ -64,15 +67,15 @@ body{
   width:100%;
   margin:0 10px 10px 10px;
 }
-#contentsHolder{
+.contentsHolder{
   width:100%;
-    
+  height:auto;
+      
 }
 #recentWork{
-  margin:0 auto;
+  margin:20px auto;
   position: relative;
-  background-color: #eee;
-
+background-color: #eee;
 }
 
 p.small{
@@ -82,6 +85,7 @@ p.small{
 #mainSlide{
   position:relative;
   left:0;
+  height:auto;
 
 }
 .clearfix:after {
@@ -101,13 +105,13 @@ p.next,p.back
   position:absolute;
   z-index:1000;
   cursor: pointer;
-  top:100px;
+  
 }
 #loader-bg {
   
   position: fixed;
-  width: 0;
-  height: 5px;
+  width:100%;
+  height:100%;
   top: 0px;
   left: 0px;
   background: #000;
@@ -117,4 +121,24 @@ p.next,p.back
 #wrap{
   width:100%;
   overflow: hidden;
+}
+
+@media screen and (max-width: 600px) {
+.textOver{
+  position:relative;
+  
+  height:120px;
+  z-index: 0;
+}
+.textSetting{
+      padding-left: 10px;
+      text-align: left;        
+}
+p.next,p.back
+{
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  }
 }
