@@ -52,6 +52,9 @@ h2{
   margin:10px;
   font-size:18px;
 }
+span.subtitle{
+  color:#fff;
+}
 html{
   width:100%;
 }
@@ -61,11 +64,11 @@ body{
   font-family: 'Book Antiqua', Palatino, 'Palatino Linotype', 'Palatino LT STD', Georgia, serif;
   }
 #header{
-  background-color: #fff;
-  opacity:0.8;
+  background: rgba(255, 212, 100, 1);
+
   width:100%;
   margin:0;
-  border-bottom:1px dotted #eee;
+  
   padding:10px 0 10px 0;
 }  
 #innerHeader{
@@ -78,14 +81,14 @@ body{
       
 }
 #recentWork{
-  margin:20px auto;
+  margin:0px auto;
   position: relative;
   background-color: #eee;
 }
 
 p.small{
   font-size:10px;
-  color:#ccc;
+  color:#fff;
 }
 #mainSlide{
   position:relative;
@@ -133,7 +136,7 @@ p.next:hover,p.back:hover
 @media screen and (max-width: 600px) {
 .textOver{
   position:relative;
-  height:120px;
+  height:95px;
   z-index: 0;
 }
 .textSetting{
