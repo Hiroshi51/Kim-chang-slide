@@ -52,7 +52,9 @@ $(document).ready(function(){
         slideWidth:windowWidth*0.6,
         slideLeftMargin:windowWidth*0.2,
         mainSlideWidth:function(){return this.slideWidth*4}, 
-        originalPosition:function(){return this.slideLeftMargin*1.5-slidePosition*this.slideWidth+adjustMargin}
+        originalPosition:function(){return this.slideLeftMargin*1.5-slidePosition*this.slideWidth+adjustMargin},
+        startingPosition:function(){return this.slideLeftMargin*1.5+adjustMargin},
+        endPosition:function(){return this.slideLeftMargin*1.5+adjustMargin-settings.slideWidth*3}
       };
     }
     else{
@@ -60,6 +62,8 @@ $(document).ready(function(){
         slideWidth:windowWidth*0.8,
         slideLeftMargin:windowWidth*0.1,
         mainSlideWidth:function(){return this.slideWidth*4}, 
+        originalPosition:function(){return this.slideLeftMargin},
+        startingPosition:function(){return this.slideLeftMargin}
       };
     }
     return settings;
@@ -127,7 +131,7 @@ $(document).ready(function(){
         slidePosition++;
         break;       
         case 3:
-        $('#mainSlide').animate({left:parseInt($('#mainSlide').css("left"))+settings.slideWidth*3+"px"},animateSpeed,easing);
+        $('#mainSlide').animate({left:settings.startingPosition()+"px"},animateSpeed,easing);
         $('.fadeIntext04').animate({top:"100px",opacity:"0"},animateSpeed);
         var wait = window.setTimeout(function(){
         $('.fadeIntext01').animate({top:"20px",opacity:"1"},animateSpeed);
@@ -141,7 +145,7 @@ $(document).ready(function(){
   function animateSlideBack(settings){
         switch(slidePosition){
         case 0:
-        $('#mainSlide').animate({left:parseInt($('#mainSlide').css("left"))-settings.slideWidth*3+"px"},animateSpeed,easing);
+        $('#mainSlide').animate({left:settings.endPosition()+"px"},animateSpeed,easing);
         $('.fadeIntext01').animate({top:"100px",opacity:"0"},animateSpeed);
         var wait = window.setTimeout(function(){
         $('.fadeIntext04').animate({top:"20px",opacity:"1"},animateSpeed);
