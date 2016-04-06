@@ -110,6 +110,7 @@ p.next,p.back
   position:absolute;
   z-index:1000;
   cursor: pointer;
+  font-weight: bold;
 }
 p.next:hover,p.back:hover
 {
