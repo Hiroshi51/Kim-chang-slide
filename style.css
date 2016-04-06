@@ -138,6 +138,7 @@ p.next:hover,p.back:hover
   position:relative;
   height:95px;
   z-index: 0;
+  display: none;
 }
 .textSetting{
   text-align: left; 

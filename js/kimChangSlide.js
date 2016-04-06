@@ -84,8 +84,8 @@ $(document).ready(function(){
       	  $('#mainSlide')  .css({width:settings.mainSlideWidth()+"px",left:settings.slideLeftMargin-slidePosition*settings.slideWidth+"px",marginLeft:0});
       	  $('.textOver')   .css({width:"100%",left:0});
       	  $('.textSetting').css({width:"95%",left:"2.5%"});
-          $('.next')       .css({top:slideHeight/2+adjustHeight+"px",right:0,left:"auto"});
-          $('.back')       .css({top:slideHeight/2+adjustHeight+"px",left:0,right:"auto"}); 
+          $('.next')       .css({top:slideHeight/2-15+"px",right:0,left:"auto"});
+          $('.back')       .css({top:slideHeight/2-15+"px",left:0,right:"auto"}); 
       }
   }
 
