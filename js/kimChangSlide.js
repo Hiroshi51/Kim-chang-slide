@@ -6,7 +6,9 @@ $(document).ready(function(){
   var sliderMargin  = 0;  //スライドの左マージン用
   var slideHeight   = 0;  //スライドの高さ用
   var adjustMargin  = 70; //両サイドのマージンを調整
-
+  var easing        = "easeInOutQuint"; //イージングの種類
+  var animateSpeed  = 800; //イージングの種類
+  
   //次へボタンの動作設定
   var click_allowed = true;
   $('.next').on('click',function(event){
@@ -16,7 +18,7 @@ $(document).ready(function(){
   	click_allowed = false; 
   	var wait = window.setTimeout(function(){
   		click_allowed = true;
-  	},500);
+  	},500,easing);
   });
   
   //前へボタンの動作設定
@@ -27,7 +29,7 @@ $(document).ready(function(){
   	click_allowed = false; 
   	var wait = window.setTimeout(function(){
   		click_allowed = true;
-  	},500);
+  	},500,easing);
   });
 
   //ウィンドウのリサイズが行われるたびにスライドの再設定を実行
@@ -68,13 +70,13 @@ $(document).ready(function(){
   //moveSlideForward function definition
   function moveSlideForward(){
 			var next = parseInt($('#mainSlide').css("left")) - slideWidth; 
-		$('#mainSlide').animate({left:next+"px"},500);
+		$('#mainSlide').animate({left:next+"px"},animateSpeed,easing);
   }
 
   //moveSlideBackward function definition		 
   function moveSlideBackward(){
 			var back = parseInt($('#mainSlide').css("left")) + slideWidth; 
-	    $('#mainSlide').animate({left:back+"px"},500);
+	    $('#mainSlide').animate({left:back+"px"},animateSpeed,easing);
   }	
 
   //次への動作関数
@@ -82,7 +84,7 @@ $(document).ready(function(){
        	switch(slidePosition){
         case 0:
         moveSlideForward()
-        $('.fadeIntext01').animate({top:"100px",opacity:"0"},500);
+        $('.fadeIntext01').animate({top:"100px",opacity:"0"},animateSpeed);
         var wait = window.setTimeout(function(){
         $('.fadeIntext02').animate({top:"20px",opacity:"1"});
         },10);
@@ -90,7 +92,7 @@ $(document).ready(function(){
         break;
         case 1:
         moveSlideForward()
-        $('.fadeIntext02').animate({top:"100px",opacity:"0"},500);
+        $('.fadeIntext02').animate({top:"100px",opacity:"0"},animateSpeed);
         var wait = window.setTimeout(function(){
         $('.fadeIntext03').animate({top:"20px",opacity:"1"});
         },10);
@@ -98,7 +100,7 @@ $(document).ready(function(){
         break;   
         case 2:
         moveSlideForward()
-        $('.fadeIntext03').animate({top:"100px",opacity:"0"},500);
+        $('.fadeIntext03').animate({top:"100px",opacity:"0"},animateSpeed);
         var wait = window.setTimeout(function(){
         $('.fadeIntext04').animate({top:"20px",opacity:"1"});
         },10);
@@ -106,12 +108,12 @@ $(document).ready(function(){
         break;       
         case 3:
         if(windowWidth > 600){
-          $('#mainSlide').animate({left:sliderMargin*1.5+adjustMargin},500);
+          $('#mainSlide').animate({left:sliderMargin*1.5+adjustMargin},animateSpeed,easing);
         }
         else{
-          $('#mainSlide').animate({left:sliderMargin},500);
+          $('#mainSlide').animate({left:sliderMargin},animateSpeed,easing);
         }
-        $('.fadeIntext04').animate({top:"100px",opacity:"0"},500);
+        $('.fadeIntext04').animate({top:"100px",opacity:"0"},animateSpeed);
         var wait = window.setTimeout(function(){
         $('.fadeIntext01').animate({top:"20px",opacity:"1"});
         },10);
@@ -124,8 +126,8 @@ $(document).ready(function(){
   function animateSlideBack(){
         switch(slidePosition){
         case 0:
-        $('#mainSlide').animate({left:parseInt($('#mainSlide').css("left"))-slideWidth*3+"px"},500);
-        $('.fadeIntext01').animate({top:"100px",opacity:"0"},500);
+        $('#mainSlide').animate({left:parseInt($('#mainSlide').css("left"))-slideWidth*3+"px"},animateSpeed,easing);
+        $('.fadeIntext01').animate({top:"100px",opacity:"0"},animateSpeed);
         var wait = window.setTimeout(function(){
         $('.fadeIntext04').animate({top:"20px",opacity:"1"});
         },10);
@@ -133,7 +135,7 @@ $(document).ready(function(){
         break;
         case 1:
         moveSlideBackward();
-        $('.fadeIntext02').animate({top:"100px",opacity:"0"},500);
+        $('.fadeIntext02').animate({top:"100px",opacity:"0"},animateSpeed);
         var wait = window.setTimeout(function(){
         $('.fadeIntext01').animate({top:"20px",opacity:"1"});
         },10);
@@ -141,7 +143,7 @@ $(document).ready(function(){
         break;   
         case 2:
         moveSlideBackward();
-        $('.fadeIntext03').animate({top:"100px",opacity:"0"},500);
+        $('.fadeIntext03').animate({top:"100px",opacity:"0"},animateSpeed);
         var wait = window.setTimeout(function(){
         $('.fadeIntext02').animate({top:"20px",opacity:"1"});
         },10);
@@ -149,7 +151,7 @@ $(document).ready(function(){
         break;       
         case 3:
         moveSlideBackward();
-        $('.fadeIntext04').animate({top:"100px",opacity:"0"},500);
+        $('.fadeIntext04').animate({top:"100px",opacity:"0"},animateSpeed);
         var wait = window.setTimeout(function(){
         $('.fadeIntext03').animate({top:"20px",opacity:"1"});
         },10);
