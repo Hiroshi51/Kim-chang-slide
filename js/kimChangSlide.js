@@ -54,7 +54,7 @@ $(document).ready(function(){
         mainSlideWidth:function(){return this.slideWidth*4}, 
         originalPosition:function(){return this.slideLeftMargin*1.5-slidePosition*this.slideWidth+adjustMargin},
         startingPosition:function(){return this.slideLeftMargin*1.5+adjustMargin},
-        endPosition:function(){return this.slideLeftMargin*1.5+adjustMargin-settings.slideWidth*3}
+        endPosition:function(){return this.slideLeftMargin*1.5+adjustMargin-this.slideWidth*3}
       };
     }
     else{
@@ -63,7 +63,8 @@ $(document).ready(function(){
         slideLeftMargin:windowWidth*0.1,
         mainSlideWidth:function(){return this.slideWidth*4}, 
         originalPosition:function(){return this.slideLeftMargin},
-        startingPosition:function(){return this.slideLeftMargin}
+        startingPosition:function(){return this.slideLeftMargin},
+        endPosition:function(){return this.slideLeftMargin-this.slideWidth*3}
       };
     }
     return settings;
