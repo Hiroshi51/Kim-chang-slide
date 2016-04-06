@@ -1,7 +1,6 @@
 *{
   margin:0px;
   padding:0;
-
 }
 ul{
   width:auto;
@@ -48,7 +47,6 @@ h2{
 }
 html{
   width:100%;
-
 }
 body{
   position:relative;
@@ -75,7 +73,7 @@ body{
 #recentWork{
   margin:20px auto;
   position: relative;
-background-color: #eee;
+  background-color: #eee;
 }
 
 p.small{
@@ -105,10 +103,8 @@ p.next,p.back
   position:absolute;
   z-index:1000;
   cursor: pointer;
-  
 }
 #loader-bg {
-  
   position: fixed;
   width:100%;
   height:100%;
@@ -117,7 +113,6 @@ p.next,p.back
   background: #000;
   z-index:9999;
 }
-
 #wrap{
   width:100%;
   overflow: hidden;
@@ -126,13 +121,11 @@ p.next,p.back
 @media screen and (max-width: 600px) {
 .textOver{
   position:relative;
-  
   height:120px;
   z-index: 0;
 }
 .textSetting{
-      padding-left: 10px;
-      text-align: left;        
+  text-align: left; 
 }
 p.next,p.back
 {
