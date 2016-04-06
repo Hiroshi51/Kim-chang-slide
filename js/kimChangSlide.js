@@ -7,7 +7,7 @@ $(document).ready(function(){
   var sliderMargin  = 0;  //スライドの左マージン用
   var slideHeight   = 0;  //スライドの高さ用
   var adjustMargin  = 70; //両サイドのマージンを調整
-  var easing        = "easeInOutQuint"; //イージングの種類
+  var easing        = "easeInOutCirc"; //イージングの種類
   var animateSpeed  = 800; //イージングの種類
   
   //次へボタンの動作設定
@@ -15,7 +15,8 @@ $(document).ready(function(){
   $('.next').on('click',function(event){
   	if(!click_allowed){return};
   	event.preventDefault();
-  	animateSlideNext();
+    windowWidth = $(window).width();
+  	animateSlideNext(windowWidth);
   	click_allowed = false; 
   	var wait = window.setTimeout(function(){
   		click_allowed = true;
@@ -84,7 +85,7 @@ $(document).ready(function(){
   }	
 
   //次への動作関数
-  function animateSlideNext(){
+  function animateSlideNext(windowWidth){
        	switch(slidePosition){
         case 0:
         moveSlideForward()
