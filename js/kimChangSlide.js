@@ -1,11 +1,11 @@
 $(document).ready(function(){
   //Configuration	
-  var slidePosition = 0;　　 //現在のスライド位置認識用
-  var windowWidth   = 0;　　 //ウィンドウサイズ監視用
-  var slideWidth    = 0;   //画像一つの横幅用
-  var sliderMargin  = 0;   //スライドの左マージン用
-  var slideHeight   = 0;   //スライドの高さ用
-  var adjustMargin  = 70;  //両サイドのマージンを調整
+  var slidePosition = 0;　//現在のスライド位置認識用
+  var windowWidth   = 0;　//ウィンドウサイズ監視用
+  var slideWidth    = 0;  //画像一つの横幅用
+  var sliderMargin  = 0;  //スライドの左マージン用
+  var slideHeight   = 0;  //スライドの高さ用
+  var adjustMargin  = 70; //両サイドのマージンを調整
 
   //次へボタンの動作設定
   var click_allowed = true;
