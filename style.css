@@ -37,6 +37,7 @@ li.slide img{
   position: absolute;
   top:100px;
   text-align:left;
+  font-size:12px;
 }
 .fadeIntext01{
   opacity:1;
@@ -47,13 +48,19 @@ li.slide img{
 }
 h1{
   margin:0px;
+   font-family: 'Book Antiqua', Palatino, 'Palatino Linotype', 'Palatino LT STD', Georgia, serif;
 }
-h2{
-  margin:10px;
-  font-size:18px;
-}
-span.subtitle{
+
+h2.subtitle{
   color:#fff;
+  font-size:15px;
+}
+h3{
+  color:#000;
+  font-size:20px;
+  margin:0 0 5px 0;
+  padding:0 0 5px 0;
+  border-bottom:1px solid #ccc;
 }
 html{
   width:100%;
@@ -61,7 +68,7 @@ html{
 body{
   position:relative;
   height:auto;
-  font-family: 'Book Antiqua', Palatino, 'Palatino Linotype', 'Palatino LT STD', Georgia, serif;
+  font-family: helvetica, arial, 'hiragino kaku gothic pro', meiryo, 'ms pgothic', sans-serif;
   }
 #header{
   background: rgba(255, 212, 100, 1);
@@ -138,7 +145,7 @@ p.next:hover,p.back:hover
   position:relative;
   height:95px;
   z-index: 0;
-  display: none;
+  display: 
 }
 .textSetting{
   text-align: left; 
