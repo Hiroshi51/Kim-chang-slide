@@ -1,6 +1,7 @@
 $(document).ready(function(){
   //Configuration	
   var slidePosition = 0;　//現在のスライド位置認識用
+  var defaultWinWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;　//ウィンドウサイズ監視用
   var windowWidth   = 0;　//ウィンドウサイズ監視用
   var slideWidth    = 0;  //画像一つの横幅用
   var sliderMargin  = 0;  //スライドの左マージン用
@@ -33,11 +34,14 @@ $(document).ready(function(){
   });
 
   //ウィンドウのリサイズが行われるたびにスライドの再設定を実行
-  $(window).resize(function(){adjestImgs();});
+  $(window).resize(function(){
+    windowWidth = $(window).width();
+    adjestImgs(windowWidth);
+  });
   
   //スライド設定関数
-  function adjestImgs(){	
-  	  windowWidth = window.innerWidth;
+  function adjestImgs(windowWidth){	
+  	 
   	  if(windowWidth > 600){
       	  slideWidth         = windowWidth*0.6;
       	  sliderMargin       = windowWidth*0.2;	
@@ -161,5 +165,5 @@ $(document).ready(function(){
    }
 
   //ページロード時のスライド表示
-　　adjestImgs();  
+　　adjestImgs(defaultWinWidth);  
 });
