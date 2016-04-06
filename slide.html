@@ -10,9 +10,8 @@
     $(document).ready(function(){
     	var loadingHeight = $('#loading-gif').height();
     	var loadingWidth  = $('#loading-gif').width();
-    	console.log(loadingWidth);
-    	var defaultWidth  = window.innerWidth;
-    	var defaultHeight = window.innerHeight;
+    	var defaultWidth  = $(window).width();
+    	var defaultHeight = $(window).height();
     	$('#loader-img').css({
     		position:"absolute",
     		top :defaultHeight/2-loadingHeight/2 + "px",
