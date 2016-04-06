@@ -18,6 +18,13 @@ li.slide img{
   margin:0;
   display: block;
 }
+.colorWhite{
+  color:white;
+  width:100%;
+  text-align: center;
+  font-size:10px;
+  margin:10px 0;
+}
 .textOver{
   text-align: center;
   background-color: white;

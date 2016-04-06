@@ -5,9 +5,23 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="js/kimChangLoading.js"></script>
     <script src="js/kimChangSlide.js"></script>
+    <script>
+    $(document).ready(function(){
+    	var loadingHeight = $('#loading-gif').height();
+    	var loadingWidth  = $('#loading-gif').width();
+    	console.log(loadingWidth);
+    	var defaultWidth  = window.innerWidth;
+    	var defaultHeight = window.innerHeight;
+    	$('#loader-img').css({
+    		position:"absolute",
+    		top :defaultHeight/2-loadingHeight/2 + "px",
+    		left:defaultWidth/2-loadingWidth/2 + "px"
+    	});
+    });
+    </script>
 </head>
 <body>
-	<div id="loader-bg"></div>
+	<div id="loader-bg"><div id="loader-img"><img id="loading-gif" src="img/loading.gif"/><p class="colorWhite">LOADING…</p></div></div>
 	<div id="wrap">
 		<header>
 		    <div id="header" class="dissapear">
