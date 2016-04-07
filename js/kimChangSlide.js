@@ -8,9 +8,11 @@ $(document).ready(function(){
   var slideHeight   = 0;  //スライドの高さ用
   var adjustMargin  = 70; //両サイドのマージンを調整
   var easing        = "easeInOutCirc"; //イージングの種類
-  var animateSpeed  = 800; //イージングの種類
+  var animateSpeed  = 800; //全体的なアニメーションの速さ
   var settings    = {}; //スライドのポジション設定
-  
+  var NumberOfSlides = $('li.slide').length;
+
+
   //次へボタンの動作設定
   var click_allowed = true;
   $('.next').on('click',function(event){
@@ -40,6 +42,7 @@ $(document).ready(function(){
 
   //ウィンドウのリサイズが行われるたびにスライドの再設定を実行
   $(window).resize(function(){
+    
     windowWidth = $(window).width();
     settings = setRanges();
     adjestImgs(windowWidth,settings);
@@ -51,20 +54,20 @@ $(document).ready(function(){
        settings = {
         slideWidth:windowWidth*0.6,
         slideLeftMargin:windowWidth*0.2,
-        mainSlideWidth:function(){return this.slideWidth*4}, 
+        mainSlideWidth:function(){return this.slideWidth*NumberOfSlides}, 
         originalPosition:function(){return this.slideLeftMargin*1.5-slidePosition*this.slideWidth+adjustMargin},
         startingPosition:function(){return this.slideLeftMargin*1.5+adjustMargin},
-        endPosition:function(){return this.slideLeftMargin*1.5+adjustMargin-this.slideWidth*3}
+        endPosition:function(){return this.slideLeftMargin*1.5+adjustMargin-this.slideWidth*(NumberOfSlides-1)}
       };
     }
     else{
        settings = {
         slideWidth:windowWidth*0.8,
         slideLeftMargin:windowWidth*0.1,
-        mainSlideWidth:function(){return this.slideWidth*4}, 
+        mainSlideWidth:function(){return this.slideWidth*NumberOfSlides}, 
         originalPosition:function(){return this.slideLeftMargin},
         startingPosition:function(){return this.slideLeftMargin},
-        endPosition:function(){return this.slideLeftMargin-this.slideWidth*3}
+        endPosition:function(){return this.slideLeftMargin-this.slideWidth*(NumberOfSlides-1)}
       };
     }
     return settings;
@@ -106,78 +109,42 @@ $(document).ready(function(){
 
   //次への動作関数
   function animateSlideNext(settings){
-       	switch(slidePosition){
-        case 0:
-        moveSlideForward(settings)
-        $('.fadeIntext01').animate({top:"100px",opacity:"0"},animateSpeed);
-        var wait = window.setTimeout(function(){
-        $('.fadeIntext02').animate({top:"20px",opacity:"1"},animateSpeed);
-        },10);
-        slidePosition++;
-        break;
-        case 1:
-        moveSlideForward(settings)
-        $('.fadeIntext02').animate({top:"100px",opacity:"0"},animateSpeed);
-        var wait = window.setTimeout(function(){
-        $('.fadeIntext03').animate({top:"20px",opacity:"1"},animateSpeed);
-        },10);
-        slidePosition++;
-        break;   
-        case 2:
-        moveSlideForward(settings)
-        $('.fadeIntext03').animate({top:"100px",opacity:"0"},animateSpeed);
-        var wait = window.setTimeout(function(){
-        $('.fadeIntext04').animate({top:"20px",opacity:"1"},animateSpeed);
-        },10);
-        slidePosition++;
-        break;       
-        case 3:
-        $('#mainSlide').animate({left:settings.startingPosition()+"px"},animateSpeed,easing);
-        $('.fadeIntext04').animate({top:"100px",opacity:"0"},animateSpeed);
-        var wait = window.setTimeout(function(){
-        $('.fadeIntext01').animate({top:"20px",opacity:"1"},animateSpeed);
-        },10);
-        slidePosition = 0;
-        break;  
-		}
-  }	
+
+        var $currentText = $('.textSetting').eq(slidePosition);
+        if(slidePosition < NumberOfSlides-1){         
+          var $nextText = $('.textSetting').eq(slidePosition+1);
+          moveSlideForward(settings);
+          $currentText.animate({top:"100px",opacity:"0"},animateSpeed);
+          $nextText.animate({top:"20px",opacity:"1"},animateSpeed);
+          slidePosition++;
+		    }
+        else{
+          $('#mainSlide').animate({left:settings.startingPosition()+"px"},animateSpeed,easing);
+          var $firstText = $('.textSetting').eq(0);
+          $currentText.animate({top:"100px",opacity:"0"},animateSpeed);
+          $firstText.animate({top:"20px",opacity:"1"},animateSpeed);
+          slidePosition = 0;
+        }
+  }      
+ 
 
   //前への動作関数
   function animateSlideBack(settings){
-        switch(slidePosition){
-        case 0:
-        $('#mainSlide').animate({left:settings.endPosition()+"px"},animateSpeed,easing);
-        $('.fadeIntext01').animate({top:"100px",opacity:"0"},animateSpeed);
-        var wait = window.setTimeout(function(){
-        $('.fadeIntext04').animate({top:"20px",opacity:"1"},animateSpeed);
-        },10);
-        slidePosition = 3;
-        break;
-        case 1:
-        moveSlideBackward(settings);
-        $('.fadeIntext02').animate({top:"100px",opacity:"0"},animateSpeed);
-        var wait = window.setTimeout(function(){
-        $('.fadeIntext01').animate({top:"20px",opacity:"1"},animateSpeed);
-        },10);
-        slidePosition--;
-        break;   
-        case 2:
-        moveSlideBackward(settings);
-        $('.fadeIntext03').animate({top:"100px",opacity:"0"},animateSpeed);
-        var wait = window.setTimeout(function(){
-        $('.fadeIntext02').animate({top:"20px",opacity:"1"},animateSpeed);
-        },10);
-        slidePosition--;
-        break;       
-        case 3:
-        moveSlideBackward(settings);
-        $('.fadeIntext04').animate({top:"100px",opacity:"0"},animateSpeed);
-        var wait = window.setTimeout(function(){
-        $('.fadeIntext03').animate({top:"20px",opacity:"1"},animateSpeed);
-        },10);
-        slidePosition--;
-        break;  
-     	}
+        var $currentText = $('.textSetting').eq(slidePosition);
+        if(slidePosition > 0){
+          var $prevText = $('.textSetting').eq(slidePosition-1);
+          moveSlideBackward(settings);
+          $currentText.animate({top:"100px",opacity:"0"},animateSpeed);
+          $prevText.animate({top:"20px",opacity:"1"},animateSpeed);
+          slidePosition--;
+        }
+        else{
+          $('#mainSlide').animate({left:settings.endPosition()+"px"},animateSpeed,easing);
+          var $endText = $('.textSetting').eq(NumberOfSlides-1);
+          $currentText.animate({top:"100px",opacity:"0"},animateSpeed);
+          $endText.animate({top:"20px",opacity:"1"},animateSpeed);
+          slidePosition = NumberOfSlides-1;
+        }
    }
 
   //ページロード時のスライド表示
