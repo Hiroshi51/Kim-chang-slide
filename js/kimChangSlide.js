@@ -18,7 +18,7 @@ $(document).ready(function(){
   $('.next').on('click',function(event){
   	if(!click_allowed){return};
   	event.preventDefault();
-    windowWidth = $(window).width();
+    
     settings = setRanges();
   	animateSlideNext(settings);
   	click_allowed = false; 
@@ -31,7 +31,7 @@ $(document).ready(function(){
   $('.back').on('click',function(event){
   	if(!click_allowed){return};
   	event.preventDefault();
-    windowWidth = $(window).width();
+    
     settings = setRanges();
   	animateSlideBack(settings);
   	click_allowed = false; 
@@ -42,11 +42,15 @@ $(document).ready(function(){
 
   //ウィンドウのリサイズが行われるたびにスライドの再設定を実行
   $(window).resize(function(){
-    
     windowWidth = $(window).width();
     settings = setRanges();
     adjestImgs(windowWidth,settings);
   });
+
+  var moveSlide = setInterval(function(){
+    settings = setRanges();
+    animateSlideNext(settings);
+  },5000);
   
   //デフォルト設定オブジェクト返し
   function setRanges(){
