@@ -11,19 +11,20 @@ $(document).ready(function(){
   var animateSpeed  = 800; //全体的なアニメーションの速さ
   var settings    = {}; //スライドのポジション設定
   var NumberOfSlides = $('li.slide').length;
-
+  var autoSlide;
 
   //次へボタンの動作設定
   var click_allowed = true;
   $('.next').on('click',function(event){
   	if(!click_allowed){return};
   	event.preventDefault();
-    
+    clearInterval(autoSlide);
     settings = setRanges();
   	animateSlideNext(settings);
   	click_allowed = false; 
   	var wait = window.setTimeout(function(){
   		click_allowed = true;
+      startAutoSlide();
   	},600,easing);
   });
   
@@ -31,12 +32,13 @@ $(document).ready(function(){
   $('.back').on('click',function(event){
   	if(!click_allowed){return};
   	event.preventDefault();
-    
+    clearInterval(autoSlide);
     settings = setRanges();
   	animateSlideBack(settings);
   	click_allowed = false; 
   	var wait = window.setTimeout(function(){
   		click_allowed = true;
+      startAutoSlide();
   	},600,easing);
   });
 
@@ -46,12 +48,12 @@ $(document).ready(function(){
     settings = setRanges();
     adjestImgs(windowWidth,settings);
   });
-
-  var moveSlide = setInterval(function(){
-    settings = setRanges();
-    animateSlideNext(settings);
-  },5000);
   
+  function startAutoSlide(){
+      autoSlide = setInterval(function(){
+      animateSlideNext(settings);
+    },7000);
+  }
   //デフォルト設定オブジェクト返し
   function setRanges(){
     if(windowWidth > 600){
@@ -78,7 +80,7 @@ $(document).ready(function(){
   }
   //スライド設定関数
   function adjestImgs(windowWidth,settings){	
- 
+
   	  if(windowWidth > 600){
       	  $('#mainSlide')  .width(settings.mainSlideWidth()).css({left:settings.originalPosition()+"px"});
       	  $('.slide')      .width(settings.slideWidth);
@@ -99,21 +101,24 @@ $(document).ready(function(){
           $('.next')       .css({top:slideHeight/2-15+"px",right:0,left:"auto"});
           $('.back')       .css({top:slideHeight/2-15+"px",left:0,right:"auto"}); 
       }
+      
   }
 
   //moveSlideForward function definition
   function moveSlideForward(settings){
 		$('#mainSlide').animate({left:"-="+settings.slideWidth},animateSpeed,easing);
+    
   }
 
   //moveSlideBackward function definition		 
   function moveSlideBackward(settings){
 	  $('#mainSlide').animate({left:"+="+settings.slideWidth},animateSpeed,easing);
+
   }	
 
   //次への動作関数
   function animateSlideNext(settings){
-
+      
         var $currentText = $('.textSetting').eq(slidePosition);
         if(slidePosition < NumberOfSlides-1){         
           var $nextText = $('.textSetting').eq(slidePosition+1);
@@ -134,6 +139,7 @@ $(document).ready(function(){
 
   //前への動作関数
   function animateSlideBack(settings){
+
         var $currentText = $('.textSetting').eq(slidePosition);
         if(slidePosition > 0){
           var $prevText = $('.textSetting').eq(slidePosition-1);
@@ -153,5 +159,6 @@ $(document).ready(function(){
 
   //ページロード時のスライド表示
   settings = setRanges();
+  startAutoSlide();
 　　adjestImgs(defaultWinWidth,settings);  
 });
