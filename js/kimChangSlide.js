@@ -44,6 +44,7 @@ $(document).ready(function(){
 
   //ウィンドウのリサイズが行われるたびにスライドの再設定を実行
   $(window).resize(function(){
+    
     windowWidth = $(window).width();
     settings = setRanges();
     adjestImgs(windowWidth,settings);
@@ -101,7 +102,8 @@ $(document).ready(function(){
           $('.next')       .css({top:slideHeight/2-15+"px",right:0,left:"auto"});
           $('.back')       .css({top:slideHeight/2-15+"px",left:0,right:"auto"}); 
       }
-      
+      var textSettingHeight = $('.contentsHolder').height();
+    $('.textOver').height(textSettingHeight);
   }
 
   //moveSlideForward function definition
